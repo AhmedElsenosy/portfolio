@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, DM_Sans, Fira_Code } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -67,7 +68,10 @@ export default function RootLayout({
       lang="en"
       className={`${outfit.variable} ${dmSans.variable} ${firaCode.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
