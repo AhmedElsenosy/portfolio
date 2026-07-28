@@ -45,6 +45,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -52,6 +53,7 @@ html {
 }
 
 body {
+  overflow-x: clip;
   font-family: var(--font-body);
   background-color: var(--void);
   color: var(--text);
@@ -130,6 +132,37 @@ body::before {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+}
+
+/* ─── Scroll reveal (sections slide in from alternating sides) ─── */
+.scroll-reveal {
+  opacity: 0;
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-from-right {
+  transform: translateX(80px);
+}
+
+.reveal-from-left {
+  transform: translateX(-80px);
+}
+
+.scroll-reveal.is-revealed {
+  opacity: 1;
+  transform: translateX(0);
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
 

@@ -6,6 +6,7 @@ import Skills from "@/components/Skills";
 import Education from "@/components/Education";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Home() {
   return (
@@ -13,11 +14,21 @@ export default function Home() {
       <Navigation />
       <main>
         <Hero />
-        <About />
-        <Projects />
-        <Skills />
-        <Education />
-        <Contact />
+        <ScrollReveal from="right">
+          <About />
+        </ScrollReveal>
+        <ScrollReveal from="left">
+          <Projects />
+        </ScrollReveal>
+        <ScrollReveal from="right">
+          <Skills />
+        </ScrollReveal>
+        <ScrollReveal from="left">
+          <Education />
+        </ScrollReveal>
+        <ScrollReveal from="right">
+          <Contact />
+        </ScrollReveal>
       </main>
       <Footer />
     </>
