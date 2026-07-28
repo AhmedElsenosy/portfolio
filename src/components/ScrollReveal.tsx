@@ -29,6 +29,17 @@ export default function ScrollReveal({
       return;
     }
 
+    // If the section is already in view on mount (e.g. page loaded mid-scroll
+    // or user jumped here via a hash link), reveal it immediately.
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setVisible(true);
+      return;
+    }
+
+    // threshold: 0 — trigger as soon as ANY part of the section enters the
+    // viewport. A ratio-based threshold breaks on sections taller than the
+    // screen, since e.g. 12% of them can never be visible at once.
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -38,7 +49,7 @@ export default function ScrollReveal({
           }
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
     );
 
     observer.observe(el);

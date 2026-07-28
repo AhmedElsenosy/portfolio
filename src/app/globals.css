@@ -158,6 +158,23 @@ body::before {
   will-change: auto;
 }
 
+/* Faster, subtler animation on mobile — less waiting while scrolling */
+@media (max-width: 768px) {
+  .scroll-reveal {
+    transition:
+      opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-from-right {
+    transform: translateX(32px);
+  }
+
+  .reveal-from-left {
+    transform: translateX(-32px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .scroll-reveal {
     opacity: 1 !important;
