@@ -1,4 +1,5 @@
 import { ArrowDown } from "lucide-react";
+import HeroScene from "./HeroScene";
 
 const GithubIcon = ({ size = 24, className = "" }: { size?: number; className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -27,7 +28,7 @@ export default function Hero() {
     <section
       id="hero"
       aria-label="Introduction"
-      className="relative min-h-[100dvh] flex flex-col justify-center pt-16"
+      className="relative min-h-[100dvh] flex flex-col justify-center pt-16 overflow-hidden"
     >
       {/* Accent glow — subtle, not a blob */}
       <div
@@ -39,8 +40,10 @@ export default function Hero() {
       />
 
       <div className="section-container relative py-16 md:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] gap-12 lg:gap-8 items-center">
+          <div className="min-w-0">
         {/* Status line */}
-        <div className="animate-fade-up flex items-center gap-2.5 mb-10">
+        <div className="animate-fade-up flex items-center gap-2.5 mb-8 md:mb-10">
           <span
             className="w-2 h-2 rounded-full bg-success"
             style={{ animation: "pulse-dot 2s ease-in-out infinite" }}
@@ -104,7 +107,7 @@ export default function Hero() {
         </div>
 
         {/* CTAs */}
-        <div className="animate-fade-up delay-5 mt-10 flex items-center gap-4">
+        <div className="animate-fade-up delay-5 mt-10 flex flex-wrap items-center gap-4">
           <a
             href="#projects"
             className="group inline-flex items-center gap-2 bg-accent-strong hover:bg-accent-dim text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
@@ -126,6 +129,22 @@ export default function Hero() {
             <GithubIcon size={15} />
             GitHub
           </a>
+        </div>
+          </div>
+
+          {/* 3D neural network — fills the right space on desktop, stacks below on mobile */}
+          <div className="animate-fade-in delay-4 relative min-w-0 overflow-hidden h-[300px] sm:h-[380px] lg:h-[560px]">
+            {/* soft glow behind the scene */}
+            <div
+              className="absolute inset-0 m-auto w-[70%] h-[70%] rounded-full opacity-[0.12] pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(circle, var(--accent-strong), transparent 70%)",
+              }}
+              aria-hidden="true"
+            />
+            <HeroScene />
+          </div>
         </div>
       </div>
 
